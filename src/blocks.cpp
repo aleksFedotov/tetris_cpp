@@ -1,77 +1,88 @@
 #include "block.h"
 #include "position.h"
 
-class LBLock: public Block {
+class LBlock: public Block 
+{
     public: 
-        LBLock() {
+        LBlock() {
             id = 1;
             cells[0] = {Position(0,2), Position(1,0), Position(1,1), Position(1,2)};
             cells[1] = {Position(0,1), Position(1,1), Position(2,1), Position(2,2)};
             cells[2] = {Position(1,0), Position(1,1), Position(1,2), Position(2,0)};
             cells[3] = {Position(0,0), Position(0,1), Position(1,1), Position(2,1)};
+            Move(0,3); 
         }
 };
-class JBLock: public Block {
+class JBlock: public Block
+{
     public: 
-        JBLock() {
+        JBlock() {
             id = 2;
             cells[0] = {Position(0,0), Position(1,0), Position(1,1), Position(1,2)};
             cells[1] = {Position(0,1), Position(1,2), Position(1,1), Position(2,1)};
             cells[2] = {Position(1,0), Position(1,1), Position(1,2), Position(2,2)};
             cells[3] = {Position(0,1), Position(1,1), Position(2,0), Position(2,1)};
+            Move(0,3); 
         }
 };
-class IBLock: public Block {
+class IBlock: public Block 
+{
     public: 
-        IBLock() {
+        IBlock() {
             id = 3;
             cells[0] = {Position(1,0), Position(1,1), Position(1,2), Position(1,3)};
             cells[1] = {Position(0,2), Position(1,2), Position(2,2), Position(3,2)};
             cells[2] = {Position(2,0), Position(2,1), Position(2,2), Position(2,3)};
             cells[3] = {Position(0,1), Position(1,1), Position(2,1), Position(3,1)};
+            Move(-1, 3);
         }
 };
-class OBLock: public Block {
+class OBlock: public Block 
+{
     public: 
-        OBLock() {
+        OBlock() {
             id = 4;
             cells[0] = {Position(0,0), Position(0,1), Position(1,0), Position(1,1)};
             cells[1] = {Position(0,0), Position(0,1), Position(1,0), Position(1,1)};
             cells[2] = {Position(0,0), Position(0,1), Position(1,0), Position(1,1)};
             cells[3] = {Position(0,0), Position(0,1), Position(1,0), Position(1,1)};
-         
+            Move(0, 4); 
         }
 };
-class SBLock: public Block {
+class SBlock: public Block 
+{
     public: 
-        SBLock() {
+        SBlock() {
             id = 5;
             cells[0] = {Position(0,1), Position(0,2), Position(1,0), Position(1,1)};
             cells[1] = {Position(0,1), Position(1,1), Position(1,2), Position(2,2)};
             cells[2] = {Position(1,1), Position(1,2), Position(2,0), Position(2,1)};
             cells[3] = {Position(0,0), Position(0,0), Position(1,1), Position(2,1)};
+            Move(0,3); 
          
         }
 };
-class TBLock: public Block {
+class TBlock: public Block 
+{
     public: 
-        TBLock() {
+        TBlock() {
             id = 6;
             cells[0] = {Position(0,1), Position(1,0), Position(1,1), Position(1,2)};
             cells[1] = {Position(0,1), Position(1,1), Position(1,2), Position(2,1)};
             cells[2] = {Position(1,0), Position(1,1), Position(1,2), Position(2,1)};
             cells[3] = {Position(0,1), Position(1,0), Position(1,1), Position(2,1)};
-         
+            Move(0,3); 
         }
 };
-class ZBLock: public Block {
+class ZBlock: public Block 
+{
     public: 
-        ZBLock() {
+        ZBlock() {
             id = 7;
             cells[0] = {Position(0, 0), Position(0, 1), Position(1, 1), Position(1, 2)};
             cells[1] = {Position(0, 2), Position(1, 1), Position(1, 2), Position(2, 1)};
             cells[2] = {Position(1, 0), Position(1, 1), Position(2, 1), Position(2, 2)};
             cells[3] = {Position(0, 1), Position(1, 0), Position(1, 1), Position(2, 0)};
-         
+            Move(0,3); 
         }
 };

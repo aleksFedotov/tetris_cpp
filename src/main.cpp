@@ -1,6 +1,5 @@
 #include <raylib.h>
-#include "grid.h"
-#include "blocks.cpp"
+#include "game.h"
 
 
 
@@ -10,16 +9,12 @@ int main()
    Color darkBlue = {44,44,127,255};
    InitWindow(300, 600, "Tetris");
    SetTargetFPS(60);
-   Grid grid = Grid();
-   grid.Print();
-
-   LBLock block = LBLock();
+   Game game = Game();
    while(WindowShouldClose() == false) {
+      game.HandleInput();
       BeginDrawing();
       ClearBackground(darkBlue);
-      grid.Draw();
-      block.Draw();
-
+      game.Draw();
       EndDrawing();
    }
 
