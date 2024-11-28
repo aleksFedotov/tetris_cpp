@@ -11,9 +11,12 @@ class Game
         void Draw();
         void HandleInput();
         void MoveBlockDown();
+        double CalculateFllInterval();
         bool gameOver;
         int score;
         Music music;
+        int level;
+        int rowCompletedOverall;
 
     private:
         Grid grid;
@@ -32,6 +35,9 @@ class Game
         Block nextBlock;
         Sound rotateSound;
         Sound completeSound;
+        double maxFallInterval;
+        double minFallInterval;
+        int totalLevels;
         
 
 };

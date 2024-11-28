@@ -1,5 +1,6 @@
 #include "game.h"
 #include <random>
+#include <algorithm>
 
 
 
@@ -16,6 +17,11 @@ Game::Game()
     PlayMusicStream(music);
     rotateSound = LoadSound("Sounds/rotate.mp3");
     completeSound = LoadSound("Sounds/clear.mp3");
+    rowCompletedOverall = 0;
+    maxFallInterval = 0.8;
+    minFallInterval = 0.1;
+    totalLevels = 29;
+    level = 0;
 }
 
 Game::~Game() 
@@ -38,7 +44,6 @@ Block Game::GetRandomBlock()
     return block;
 }
 
-
 std::vector<Block> Game::GetAllBlocks() 
 {
     return {IBlock(),JBlock(), LBlock(), OBlock(), SBlock(), TBlock(),ZBlock()};
@@ -51,14 +56,14 @@ void Game::Draw()
     switch (nextBlock.id)
     {
     case 3:
-        nextBlock.Draw(255,290);
+        nextBlock.Draw(255,415);
         break;
     case 4:
-        nextBlock.Draw(255,280);
+        nextBlock.Draw(255,405);
         break;
     
     default:
-        nextBlock.Draw(270,270);
+        nextBlock.Draw(270,295);
         break;
     }
    
@@ -104,6 +109,7 @@ void Game::MoveBlockLeft()
         }
     }
 }
+
 void Game::MoveBlockRight() 
 {
     if(!gameOver) 
@@ -116,6 +122,7 @@ void Game::MoveBlockRight()
 
     }
 }
+
 void Game::MoveBlockDown() 
 {   
     if(!gameOver) 
@@ -128,6 +135,11 @@ void Game::MoveBlockDown()
         }
     }
 
+}
+
+double Game::CalculateFllInterval()
+{
+    return std::max(minFallInterval, maxFallInterval *  pow(minFallInterval/maxFallInterval,level/totalLevels));
 }
 
 bool Game::isBlockOutside()
@@ -202,24 +214,43 @@ void Game::Reset()
     currentBlock = GetRandomBlock();
     nextBlock = GetRandomBlock();
     score = 0;
+    level = 0;
+    rowCompletedOverall = 0;
 }
 
 void Game::UpdateScore(int rowsCompleted, int moveDownPoints)
 {   
+    int basePoints = 0;
     switch (rowsCompleted)
     {
     case 1:
-        score += 100;
+        basePoints += 40;
         break;
     case 2:
-        score += 300;
+        basePoints += 100;
         break;
     case 3:
-        score += 500;
+        basePoints += 300;
+        break;
+    case 4:
+        basePoints += 1200; // bonus for tetris
         break;
     default:
         break;
     }
 
+    score += basePoints * (level +1);
     score += moveDownPoints;
+
+    rowCompletedOverall += rowsCompleted;
+
+    if(rowCompletedOverall >= (level+1) * 10) 
+    {
+        level++;
+    }
+
+    // if(level == 30) {
+    //     gameOver = true;
+    // }
+
 }
