@@ -32,7 +32,7 @@ int main()
    while(WindowShouldClose() == false) {
       UpdateMusicStream(game.music);
       game.HandleInput();
-      double fallInterval = game.CalculateFllInterval();
+      double fallInterval = game.CalculateFallInterval();
       if(EventTriggered(fallInterval)) 
       {
          game.MoveBlockDown();
@@ -40,7 +40,7 @@ int main()
       BeginDrawing();
       ClearBackground(darkBlue);
       if(game.gameOver) {
-         DrawTextEx(font, "Game Over", {320,450}, 38, 2, WHITE);
+         DrawTextEx(font, "Game Over", {320,525}, 38, 2, WHITE);
       }
       
 

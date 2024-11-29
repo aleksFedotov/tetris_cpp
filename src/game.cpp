@@ -1,6 +1,7 @@
 #include "game.h"
 #include <random>
 #include <algorithm>
+#include <iostream>
 
 
 
@@ -22,6 +23,9 @@ Game::Game()
     minFallInterval = 0.1;
     totalLevels = 29;
     level = 0;
+    initialDelay = 0.3;
+    repeatInterval = 0.06;
+    gameOver = false;
 }
 
 Game::~Game() 
@@ -63,22 +67,79 @@ void Game::Draw()
         break;
     
     default:
-        nextBlock.Draw(270,295);
+        nextBlock.Draw(270,395);
         break;
     }
    
 }
 
+// void Game::HandleInput()
+// {
+//    int keyPressed = GetKeyPressed();
+//    if(gameOver && keyPressed != 0) 
+//    {
+//         gameOver = false;
+//         Reset();
+//    }
+//    switch (keyPressed)
+//    {
+//         case KEY_LEFT:
+//             MoveBlockLeft();    
+//             break;
+//         case KEY_RIGHT:
+//             MoveBlockRight();
+//             break;
+//         case KEY_DOWN:
+//             MoveBlockDown();
+//             UpdateScore(0,1);
+//             break;
+//         case KEY_UP:
+//             RotateBlock();
+//             break;
+        
+//         default:
+//             break;
+//    } 
+// }
 void Game::HandleInput()
 {
-   int keyPressed = GetKeyPressed();
-   if(gameOver && keyPressed != 0) 
-   {
-        gameOver = false;
-        Reset();
-   }
-   switch (keyPressed)
-   {
+    for (auto& [key, pressed] : keyPressed) 
+        {    
+            if (IsKeyUp(key)) 
+            {
+               
+                keyPressed[key] = false;
+                HandleKeyRelease(key);
+            } 
+            else if (pressed && IsKeyDown(key) && key !=KEY_UP) 
+            {
+                
+                double currentTime = GetTime();
+                double elapsedTime = currentTime - keyTimers[key];
+
+                if (elapsedTime >= repeatInterval) 
+                {
+                    HandleKeyAction(key); 
+                    keyTimers[key] = currentTime; 
+                }
+            }
+        }
+
+     
+        int key = GetKeyPressed();
+        if (key != 0) 
+        {
+            
+            keyPressed[key] = true; 
+            keyTimers[key] = GetTime(); 
+            HandleKeyAction(key); 
+        }
+}
+
+void Game::HandleKeyAction(int key)
+{
+    switch (key) 
+    {
         case KEY_LEFT:
             MoveBlockLeft();
             break;
@@ -87,15 +148,19 @@ void Game::HandleInput()
             break;
         case KEY_DOWN:
             MoveBlockDown();
-            UpdateScore(0,1);
+            UpdateScore(0, 1); 
             break;
         case KEY_UP:
             RotateBlock();
             break;
-        
         default:
             break;
-   } 
+    }
+}
+
+void Game::HandleKeyRelease(int key)
+{
+    keyPressed[key] = false;
 }
 
 void Game::MoveBlockLeft() 
@@ -137,7 +202,7 @@ void Game::MoveBlockDown()
 
 }
 
-double Game::CalculateFllInterval()
+double Game::CalculateFallInterval()
 {
     return std::max(minFallInterval, maxFallInterval *  pow(minFallInterval/maxFallInterval,level/totalLevels));
 }

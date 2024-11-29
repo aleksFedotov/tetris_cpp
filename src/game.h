@@ -1,6 +1,7 @@
 #pragma once 
 #include "grid.h"
 #include "blocks.cpp"
+#include <map>
 
 
 class Game 
@@ -10,13 +11,18 @@ class Game
         ~Game();
         void Draw();
         void HandleInput();
+        void HandleKeyAction(int key);
+        void HandleKeyRelease(int key);
         void MoveBlockDown();
-        double CalculateFllInterval();
+        double CalculateFallInterval();
         bool gameOver;
         int score;
         Music music;
         int level;
         int rowCompletedOverall;
+        double initialDelay;
+        double repeatInterval;
+       
 
     private:
         Grid grid;
@@ -38,6 +44,8 @@ class Game
         double maxFallInterval;
         double minFallInterval;
         int totalLevels;
+        std::map<int, bool> keyPressed;
+        std::map<int, double> keyTimers;
         
 
 };
