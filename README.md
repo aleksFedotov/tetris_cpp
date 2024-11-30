@@ -1,29 +1,29 @@
-# Raylib-CPP-Starter-Template-for-VSCODE-V2
-Raylib C++ Starter Template for Visual Studio Code on Windows.
-This demo project contains a bouncing ball raylib example program.
-It works with raylib version 5.0. Tested on both Windows 10 and Windows 11.
+# Tetris Game in C++ with raylib
 
-# How to use this template
-1. Double click on the main.code-workspace file. This will open the template in VS Code.
-2. From the Explorer Window of VS Code navigate to the src folder and double click on the main.cpp file.
-3. Press F5 on the keyboard to compile and run the program.
 
-# What's changed
-The template now uses folders for better organizion of the files. So, all the source code now lives in the src folder.
+## Description
+This is a simple implementation of the classic Tetris game, written in C++ and using the raylib library for graphics and input handling. The game features traditional Tetris mechanics, colorful visuals, and a smooth gaming experience. 
 
-# Video Tutorial
+This project was created as a learning exercise to explore game development and improve skills in C++ and raylib.
 
-<p align="center">
-  <img src="preview.jpg" alt="" width="800">
-</p>
 
-<p align="center">
-🎥 <a href="https://www.youtube.com/watch?v=PaAcVk5jUd8">Video Tutorial on YouTube</a>
-</p>
+## Features
+- Classic Tetris mechanics
+- Rotating and moving blocks
+- Score tracking
+- Colorful, minimalist graphics
+- Keyboard controls for gameplay
 
-<br>
-<br>
-<p align="center">
-| 📺 <a href="https://www.youtube.com/channel/UC3ivOTE5EgpmF2DHLBmWIWg">My YouTube Channel</a>
-| 🌍 <a href="http://www.educ8s.tv">My Website</a> | <br>
-</p>
+
+## Requirements
+- C++17 or later
+- raylib 4.5 or higher
+- A C++ compiler (e.g., GCC, Clang, or MSVC)
+- Windows, macOS, or Linux
+
+
+## Screenshots
+![Gameplay](tetris_screenshot.png)
+
+# How to use 
+ Press F5 on the keyboard to compile and run the program.
