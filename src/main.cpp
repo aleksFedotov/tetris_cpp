@@ -42,6 +42,9 @@ int main()
       if(game.gameOver) {
          DrawTextEx(font, "Game Over", {320,525}, 38, 2, WHITE);
       }
+      if(game.paused) {
+         DrawTextEx(font, "Pause", {320,525}, 38, 2, WHITE);
+      }
       
 
       // Score
@@ -50,8 +53,8 @@ int main()
       DrawRectangleRounded({320,55,170,60}, 0.3, 6, lightBlue);
       char scoreText[10];
       sprintf(scoreText, "%d", game.score);
-      Vector2 textSize = MeasureTextEx(font, scoreText, 38,2);
-      DrawTextEx(font, scoreText, {320 + (170 - textSize.x)/2,65}, 38, 2, WHITE);
+      Vector2 scoreTextSize = MeasureTextEx(font, scoreText, 38,2);
+      DrawTextEx(font, scoreText, {320 + (170 - scoreTextSize.x)/2,65}, 38, 2, WHITE);
 
       // Level
       DrawTextEx(font, "LEVEL", {365,120}, 38, 2, WHITE);
@@ -59,7 +62,8 @@ int main()
       DrawRectangleRounded({320,165,170,60}, 0.3, 6, lightBlue);
       char levelText[2];
       sprintf(levelText, "%d", game.level);
-      DrawTextEx(font, levelText, {320 + (170 - textSize.x)/2,175}, 38, 2, WHITE);
+      Vector2 levelTextSize = MeasureTextEx(font, levelText, 38,2);
+      DrawTextEx(font, levelText, {320 + (170 - levelTextSize.x)/2,175}, 38, 2, WHITE);
       
       // Lines
       DrawTextEx(font, "LINES", {365,230}, 38, 2, WHITE);
@@ -67,7 +71,8 @@ int main()
       DrawRectangleRounded({320,275,170,60}, 0.3, 6, lightBlue);
       char linesText[3];
       sprintf(linesText, "%d", game.rowCompletedOverall);
-      DrawTextEx(font, linesText, {320 + (170 - textSize.x)/2,285}, 38, 2, WHITE);
+      Vector2 linesTextSize = MeasureTextEx(font, linesText, 38,2);
+      DrawTextEx(font, linesText, {320 + (170 - linesTextSize.x)/2,285}, 38, 2, WHITE);
 
 
       // Next

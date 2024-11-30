@@ -73,34 +73,6 @@ void Game::Draw()
    
 }
 
-// void Game::HandleInput()
-// {
-//    int keyPressed = GetKeyPressed();
-//    if(gameOver && keyPressed != 0) 
-//    {
-//         gameOver = false;
-//         Reset();
-//    }
-//    switch (keyPressed)
-//    {
-//         case KEY_LEFT:
-//             MoveBlockLeft();    
-//             break;
-//         case KEY_RIGHT:
-//             MoveBlockRight();
-//             break;
-//         case KEY_DOWN:
-//             MoveBlockDown();
-//             UpdateScore(0,1);
-//             break;
-//         case KEY_UP:
-//             RotateBlock();
-//             break;
-        
-//         default:
-//             break;
-//    } 
-// }
 void Game::HandleInput()
 {
     for (auto& [key, pressed] : keyPressed) 
@@ -129,10 +101,16 @@ void Game::HandleInput()
         int key = GetKeyPressed();
         if (key != 0) 
         {
-            
+            if(key == KEY_P) 
+            {
+                Pause();
+            }
+            else 
+            {
             keyPressed[key] = true; 
             keyTimers[key] = GetTime(); 
             HandleKeyAction(key); 
+            }
         }
 }
 
@@ -190,7 +168,7 @@ void Game::MoveBlockRight()
 
 void Game::MoveBlockDown() 
 {   
-    if(!gameOver) 
+    if(!gameOver && !paused) 
     {
         currentBlock.Move(1,0);
         if(isBlockOutside() || !BlockFits()) 
@@ -314,8 +292,13 @@ void Game::UpdateScore(int rowsCompleted, int moveDownPoints)
         level++;
     }
 
-    // if(level == 30) {
-    //     gameOver = true;
-    // }
+    if(level == 30) {
+        gameOver = true;
+    }
 
+}
+
+void Game::Pause()
+{
+    paused = paused ? false : true;
 }

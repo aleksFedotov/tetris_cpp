@@ -22,6 +22,7 @@ class Game
         int rowCompletedOverall;
         double initialDelay;
         double repeatInterval;
+        bool paused;
        
 
     private:
@@ -46,6 +47,7 @@ class Game
         int totalLevels;
         std::map<int, bool> keyPressed;
         std::map<int, double> keyTimers;
+        void Pause();
         
 
 };
