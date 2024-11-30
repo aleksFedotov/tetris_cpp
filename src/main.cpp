@@ -22,7 +22,7 @@ int main()
 {
 
    
-   InitWindow(500, 620, "Tetris");
+   InitWindow(500, 820, "Tetris");
    SetTargetFPS(60);
 
    Font font = LoadFontEx("Font/monogram.ttf", 60, 0,0);
@@ -43,7 +43,7 @@ int main()
          DrawTextEx(font, "Game Over", {320,525}, 38, 2, WHITE);
       }
       if(game.paused) {
-         DrawTextEx(font, "Pause", {320,525}, 38, 2, WHITE);
+         DrawTextEx(font, "Pause", {360,525}, 38, 2, WHITE);
       }
       
 
@@ -79,6 +79,14 @@ int main()
       DrawTextEx(font, "NEXT", {370,340}, 38, 2, WHITE);
       // Reactangle for next
       DrawRectangleRounded({320,380,170,100}, 0.3, 6, lightBlue);
+
+
+      // Controls
+      DrawTextEx(font, "CONTROLS", {150,630}, 38, 2, WHITE);
+      DrawTextEx(font, "LEFT/RIGHT ARROW - MOVE LEFT/RIGHT", {20,690}, 24, 2, WHITE);
+      DrawTextEx(font, "UP ARROW - ROTATE CLOCKWISE", {20,720}, 24, 2, WHITE);
+      DrawTextEx(font, "DOWN ARROW - DOWN BLOCK", {20,750}, 24, 2, WHITE);
+      DrawTextEx(font, "P - PAUSE GAME", {20,780}, 24, 2, WHITE);
       
       
       game.Draw();
